@@ -1,6 +1,7 @@
 #define PULSE_SHORT 340
 #define PULSE_LONG 612
 #define STRIP 150
+#define SYNC_INTERVAL 10000
 #define PIN 3
 #define RX_PIN 2
 #define MODE_READ 1
@@ -44,7 +45,7 @@ void onChange() {
   unsigned long diff = currentTime - prevTime;
   prevTime = currentTime;
   
-  if (!started && HIGH == state && diff >= 15000) {
+  if (!started && HIGH == state && diff >= SYNC_INTERVAL) {
     started = true;
     prevDiff = diff;
 
